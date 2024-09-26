@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  ui:
+    build: ./ui
+    container_name: ui
+    ports:
+      - "5000:80"
+    depends_on:
+      - api
+
+  api:
+    build: ./API
+    container_name: api
+    ports:
+      - "5001:8080"
+    depends_on:
+      - sqlserver
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    container_name: sqlserver
+    environment:
+      - SA_PASSWORD=YourStrong!Passw0rd
+      - ACCEPT_EULA=Y
+    ports:
+      - "1433:1433"
+    volumes:
+      - sqlserverdata:/var/opt/mssql
+
+volumes:
+  sqlserverdata:
+    driver: local
