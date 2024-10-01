@@ -1,0 +1,28 @@
+basePath: /api/v1
+host: localhost:9000
+info:
+  contact: {}
+  description: Your API description
+  title: Sample api
+  version: "1.0"
+paths:
+  /names:
+    get:
+      consumes:
+      - application/json
+      description: Get a list of names
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              type: string
+            type: array
+      security:
+      - ApiKeyAuth: []
+      summary: List names
+      tags:
+      - names
+swagger: "2.0"

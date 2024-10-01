@@ -1,6 +1,10 @@
-version: '3.8'
-
 services:
+
+  goapi:
+    build: ./goapi
+    container_name: goapi
+    ports:
+      - "5002:9000"
   ui:
     build: ./ui
     container_name: ui
